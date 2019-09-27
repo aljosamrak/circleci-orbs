@@ -278,6 +278,10 @@ commands:
           name: Save crash logs
           path: ~/Library/Logs/DiagnosticReports/
           destination: crashes
+      - store_artifacts:
+          name: Save test recording
+          path: video
+          destination: video
   test:
     description: |
       Build and test an iOS project using xcodebuild
