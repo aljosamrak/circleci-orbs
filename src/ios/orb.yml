@@ -327,6 +327,10 @@ commands:
           name: Save crash logs
           path: ~/Library/Logs/DiagnosticReports/
           destination: crashes
+      - store_artifacts:
+          name: Save xcresult
+          path: testresults
+          destination: logs
   test:
     description: |
       Build and test an iOS project using xcodebuild
@@ -375,7 +379,7 @@ commands:
       - wait-for-simulator
       - xcodebuild:
           command: test-without-building
-          arguments: $XCODEBUILD_ARGS -destination "platform=iOS Simulator,id=$SIMULATOR_UDID"
+          arguments: $XCODEBUILD_ARGS -destination "platform=iOS Simulator,id=$SIMULATOR_UDID" -resultBundlePath testresults/CircleCITestRun.xcresult
       - save-xcodebuild-artifacts
   with-cocoapods-specs-cache:
     parameters:
